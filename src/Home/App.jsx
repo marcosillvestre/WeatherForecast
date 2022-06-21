@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react'
-import '../Home/App.css'
-import { MainContainer, Container, Icon } from './styles'
+import { useState } from 'react'
+import { MainContainer, Container, Icon, SecContainer, ThirdContainer} from './styles'
 import Axios from 'axios'
 
 function App() {
@@ -12,7 +11,7 @@ function App() {
 
   }
   const handleSubmit = () => {
-    Axios.get(`http://api.weatherapi.com/v1/current.json?key=a8fee6f5682147fabe003435221806&q=${city}&lang=pt`)
+    Axios.get(`https://api.weatherapi.com/v1/current.json?key=a8fee6f5682147fabe003435221806&q=${city}&lang=pt`)
       .then((data) => {
         if (data.status === 200) {
           return data.data
@@ -30,15 +29,17 @@ function App() {
 
   return (
     <Container>
+      <nav>
       <input
         placeholder='Buscar cidade ou país'
         onChange={handleClimate}
         type="text"
         value={city} />
       <button onClick={handleSubmit} type="button" className="btn btn-primary">Enviar</button>
-
+      </nav>
       {
         weather ? (
+          <>
           <MainContainer>
 
             <p>{`${weather.location.name}, ${weather.location.localtime}`}</p>
@@ -49,16 +50,30 @@ function App() {
             </div>
             <h1>{`${weather.current.temp_c}° `}</h1>
             <h2>{weather.current.condition.text}</h2>
-
-
             <div>
               <Icon src={weather.current.condition.icon} alt="" />
             </div>
+            </MainContainer>
+
+          <SecContainer>
+
             <p>{`Sensação térmica : ${weather.current.feelslike_c}° `}</p>
             <p>{`Úmidade relativa do ar : ${weather.current.humidity}`}</p>
             <p>{`Última atualização : ${weather.current.last_updated}`}</p>
 
-          </MainContainer>
+          </SecContainer>
+
+          <ThirdContainer>
+
+            <p>{`Latitude : ${weather.location.lat}° `}</p>
+            <p>{`Longitude : ${weather.location.lon}`}</p>
+            <p>{` Temperatura em F° : ${weather.current.temp_f}`}</p>
+
+            <p>{`Última atualização : ${weather.current.last_updated}`}</p>
+
+          </ThirdContainer>
+
+          </>
         ) : null
       }
     </Container>
