@@ -1,12 +1,9 @@
 import { useState, useEffect } from 'react'
 import '../Home/App.css'
 import { MainContainer, Container, Icon } from './styles'
+import Axios from 'axios'
 
 function App() {
-  useEffect(() => {
-
-  }, [])
-
   const [city, setCity] = useState("")
   const [weather, setWeather] = useState()
 
@@ -15,20 +12,18 @@ function App() {
 
   }
   const handleSubmit = () => {
-    fetch(`http://api.weatherapi.com/v1/current.json?key=a8fee6f5682147fabe003435221806&q=${city}&lang=pt`)
-
+    Axios.get(`http://api.weatherapi.com/v1/current.json?key=a8fee6f5682147fabe003435221806&q=${city}&lang=pt`)
       .then((data) => {
         if (data.status === 200) {
-          return data.json()
+          return data.data
         } else {
-          
           alert("Cidade não encontrada")
-
         }
       })
 
       .then((data) => {
         setWeather(data)
+        console.log(data)
       })
 
   }
@@ -54,6 +49,7 @@ function App() {
             </div>
             <h1>{`${weather.current.temp_c}° `}</h1>
             <h2>{weather.current.condition.text}</h2>
+
 
             <div>
               <Icon src={weather.current.condition.icon} alt="" />
