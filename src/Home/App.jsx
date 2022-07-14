@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MainContainer, Container, Icon, SecContainer, ThirdContainer} from './styles'
+import { MainContainer, Container, Icon, SecContainer, ThirdContainer, Nav} from './styles'
 import Axios from 'axios'
 
 function App() {
@@ -29,14 +29,14 @@ function App() {
 
   return (
     <Container>
-      <nav>
+      <Nav>
       <input
         placeholder='Buscar cidade ou país'
         onChange={handleClimate}
         type="text"
         value={city} />
       <button onClick={handleSubmit} type="button" className="btn btn-primary">Enviar</button>
-      </nav>
+      </Nav>
       {
         weather ? (
           <>

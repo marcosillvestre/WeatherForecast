@@ -1,20 +1,26 @@
 import styled from "styled-components";
 
 export const Container = styled.section`
-display: flex;
-border-radius: 2em ;
-padding: 2em 1em 4em 1em ;
-align-items: center;
-flex-direction: column;
-width: 75vw;
-height: 70vh;
-background: white;
-overflow-y: scroll;
-filter: drop-shadow(0px 0px 5px #000);
-nav{
-display: flex;
-align-items: center;
-flex-direction: column;
+    display: flex;
+    border-radius: 2em ;
+    padding: 2em 1em 4em 1em ;
+    align-items: center;
+    flex-direction: column;
+    width: 75vw;
+    height: 70vh;
+    background: white;
+    overflow-y: scroll;
+    max-width: 20vw;
+
+    ::-webkit-scrollbar {
+    width: 1px;
+    }
+
+    filter: drop-shadow(0px 0px 5px #000);
+    nav{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 
 }
 input{
@@ -71,5 +77,8 @@ background: rgb(100,149,237);
 `
 export const Icon = styled.img`
 width: 8em;
-height: 8em
+height: 8em;
+`
+export const Nav = styled.nav`
+width: 80%;
 `
